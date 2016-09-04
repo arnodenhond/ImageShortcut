@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="mediashortcut">Media Shortcut</string>
+    <string name="imageshortcut">Image Shortcut</string>
+    <string name="videoshortcut">Video Shortcut</string>
+    <string name="cannotselect">Media Picker App Not Found!</string>
+    <string name="select">Select Shortcut</string>
+    <string name="shortcutadded">Shortcut Added</string>
+    <string name="shortcutcanceled">Shortcut Canceled</string>
+    <string name="couldnotgetthumbnail">Could Not Get Thumbnail</string>
+    <string name="couldnotcrop">Could not crop image. Using full size.</string>
+    <string name="settitle">Shortcut Title</string>
+    <string name="ok">Create Shortcut</string>
+    <string name="header">%1$s v%2$d by Arno den Hond © 2013</string>
+    <string name="infoheader">This app only provides a launcher shortcut to show the instructions below.</string>
+    <string name="infobody"><b>Create shortcuts on your homescreen to specific images or videos in the gallery.</b>\nThere are two ways to use this app:\n<li>When viewing an image or video, select share.</li>\n<li>From the homescreen, select add image or video shortcut.</li>\nCrop the image and select the title on the shortcut.\nLaunching the shortcut shows the image or video in full screen.</string>
+    <string name="infofooter">Please support open source software\ncode.google.com/p/image-shortcut</string>
+    <string name="infosubfooter">Press back to close this screen.</string>
+    <string name="sharelink">Share this app</string>
+    <string name="postcomment">Post a rating</string>
+    <string name="sendfeedback">Send feedback</string>
+    <string name="disablelauncher">Disable launcher shortcut</string>
+    <string name="launcherdisabled">Launcher disabled. Restart required on some devices.</string>
+    
+</resources>
