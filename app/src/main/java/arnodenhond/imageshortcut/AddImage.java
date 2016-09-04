@@ -2,6 +2,8 @@ package arnodenhond.imageshortcut;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -13,10 +15,10 @@ import java.io.File;
  */
 public class AddImage extends Activity {
 
-    public static final int REQUEST_PICK = RESULT_FIRST_USER;
-    public static final int REQUEST_CROP = RESULT_FIRST_USER + 1;
+    private static final int REQUEST_PICK = RESULT_FIRST_USER;
+    private static final int REQUEST_CROP = RESULT_FIRST_USER + 1;
 
-    Intent viewintent;
+    private Intent viewintent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class AddImage extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK || data == null || data.getData() == null) {
+        if (resultCode != RESULT_OK || data == null) {
             Toast.makeText(this, "Shortcut cancelled", Toast.LENGTH_SHORT).show();
             finish();
             return;
@@ -35,26 +37,35 @@ public class AddImage extends Activity {
         switch (requestCode) {
             case REQUEST_PICK:
                 Uri uri = data.getData();
-                Uri fileUri = ShareImage.getFile(uri, this);
+                Uri fileUri = Utils.getFile(uri, this);
 
                 viewintent = new Intent(Intent.ACTION_VIEW);
                 viewintent.setDataAndType(fileUri, "image/*");
 
-                Intent intent = ShareImage.makeCropIntent(uri);
-                if (intent.resolveActivity(getPackageManager()) != null) {
+                Intent intent = Utils.makeCropIntent(uri);
+                if (intent.resolveActivity(getPackageManager()) != null && Utils.isExternalStorageWritable()) {
                     startActivityForResult(intent, REQUEST_CROP);
                 } else {
-                    setResult(RESULT_OK, ShareImage.makeShortcutIntent(viewintent, fileUri));
+                    setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, BitmapFactory.decodeFile(fileUri.getEncodedPath()), this));
                     finish();
                 }
                 break;
             case REQUEST_CROP:
-                setResult(RESULT_OK, ShareImage.makeShortcutIntent(viewintent, data.getData()));
-                new File(data.getData().getEncodedPath()).delete();
+                Bitmap bitmap;
+                if (data.getData() == null) {
+                    bitmap = (Bitmap) data.getExtras().get("data");
+                } else {
+                    bitmap = BitmapFactory.decodeFile(data.getData().getEncodedPath());
+                }
+                setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, bitmap, this));
+                if (data.getData() != null) {
+                    new File(data.getData().getEncodedPath()).delete();
+                }
                 finish();
                 break;
         }
     }
+
 }
 
 
