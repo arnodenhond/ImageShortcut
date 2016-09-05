@@ -39,9 +39,13 @@ public class AddImage extends Activity {
         switch (requestCode) {
             case REQUEST_PICK:
                 Uri uri = data.getData();
-                Uri fileUri = Utils.getFile(uri, this);
-
-                viewintent = Utils.makeViewIntent(fileUri);
+                Uri fileUri = Utils.getImageFile(uri, this);
+                if (fileUri.equals("file://null")) {
+                    Toast.makeText(this, R.string.notlocal, Toast.LENGTH_SHORT).show();
+                    finish();
+                    return;
+                }
+                viewintent = Utils.makeImageViewIntent(fileUri);
 
                 Intent intent = Utils.makeCropIntent(uri);
                 if (intent.resolveActivity(getPackageManager()) != null && Utils.isExternalStorageWritable()) {

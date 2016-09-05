@@ -23,9 +23,13 @@ public class ShareImage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Uri uri = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
-        Uri fileUri = Utils.getFile(uri, this);
-
-        viewintent = Utils.makeViewIntent(fileUri);
+        Uri fileUri = Utils.getImageFile(uri, this);
+        if (fileUri.equals("file://null")) {
+            Toast.makeText(this, R.string.notlocal, Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+        viewintent = Utils.makeImageViewIntent(fileUri);
 
         Intent cropintent = Utils.makeCropIntent(uri);
         if (cropintent.resolveActivity(getPackageManager()) != null && Utils.isExternalStorageWritable()) {

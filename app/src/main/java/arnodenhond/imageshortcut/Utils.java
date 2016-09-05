@@ -79,7 +79,16 @@ public class Utils {
         return cropintent;
     }
 
-    public static Uri getFile(Uri uri, Context context) {
+    public static Uri getImageFile(Uri uri, Context context) {
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null);
+        cursor.moveToFirst();
+        String string = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
+        cursor.close();
+        return Uri.parse("file://" + string);
+    }
+
+    public static Uri getVideoFile(Uri uri, Context context) {
         String[] filePathColumn = {MediaStore.Images.Media.DATA};
         Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null);
         cursor.moveToFirst();
@@ -97,7 +106,7 @@ public class Utils {
         AlertDialog.Builder titleAlert = new AlertDialog.Builder(activity);
         titleAlert.setTitle(R.string.settitle);
         titleAlert.setView(title);
-        titleAlert.setIcon(new BitmapDrawable(bitmap));
+        titleAlert.setIcon(new BitmapDrawable(activity.getResources(), bitmap));
         titleAlert.setNeutralButton(R.string.ok, oklistener);
         titleAlert.setOnCancelListener(new DialogInterface.OnCancelListener() {
             public void onCancel(DialogInterface dialog) {
@@ -139,11 +148,18 @@ public class Utils {
         notificationManager.notify(0, builder.build());
     }
 
-    public static Intent makeViewIntent(Uri fileUri) {
+    public static Intent makeImageViewIntent(Uri fileUri) {
         Intent viewintent = new Intent(Intent.ACTION_VIEW);
         viewintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         viewintent.setDataAndType(fileUri, "image/*");
         return viewintent;
     }
-    
+
+    public static Intent makeVideoViewIntent(Uri fileUri) {
+        Intent viewintent = new Intent(Intent.ACTION_VIEW);
+        viewintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        viewintent.setDataAndType(fileUri, "video/*");
+        return viewintent;
+    }
+
 }
