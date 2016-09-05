@@ -25,9 +25,7 @@ public class ShareImage extends Activity {
         Uri uri = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
         Uri fileUri = Utils.getFile(uri, this);
 
-        viewintent = new Intent(Intent.ACTION_VIEW);
-        //TODO add flags
-        viewintent.setDataAndType(fileUri, "image/*");
+        viewintent = Utils.makeViewIntent(fileUri);
 
         Intent cropintent = Utils.makeCropIntent(uri);
         if (cropintent.resolveActivity(getPackageManager()) != null && Utils.isExternalStorageWritable()) {
@@ -37,6 +35,7 @@ public class ShareImage extends Activity {
             final EditText title = new EditText(this);
             Utils.buildTitleDialog(bitmap, title, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
+                    Utils.checkBegAndIncrement(ShareImage.this);
                     sendBroadcast(Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString()));
                     Toast.makeText(ShareImage.this, R.string.shortcutadded, Toast.LENGTH_SHORT).show();
                     finish();
@@ -63,6 +62,7 @@ public class ShareImage extends Activity {
         final EditText title = new EditText(this);
         Utils.buildTitleDialog(bitmap, title, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
+                Utils.checkBegAndIncrement(ShareImage.this);
                 sendBroadcast(Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString()));
                 Toast.makeText(ShareImage.this, R.string.shortcutadded, Toast.LENGTH_SHORT).show();
                 finish();

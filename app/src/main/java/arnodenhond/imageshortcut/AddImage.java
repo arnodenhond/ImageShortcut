@@ -41,9 +41,7 @@ public class AddImage extends Activity {
                 Uri uri = data.getData();
                 Uri fileUri = Utils.getFile(uri, this);
 
-                viewintent = new Intent(Intent.ACTION_VIEW);
-                //TODO add flags
-                viewintent.setDataAndType(fileUri, "image/*");
+                viewintent = Utils.makeViewIntent(fileUri);
 
                 Intent intent = Utils.makeCropIntent(uri);
                 if (intent.resolveActivity(getPackageManager()) != null && Utils.isExternalStorageWritable()) {
@@ -53,6 +51,7 @@ public class AddImage extends Activity {
                     final EditText title = new EditText(this);
                     Utils.buildTitleDialog(bitmap, title, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
+                            Utils.checkBegAndIncrement(AddImage.this);
                             setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString()));
                             Toast.makeText(AddImage.this, R.string.shortcutadded, Toast.LENGTH_SHORT).show();
                             finish();
@@ -72,6 +71,7 @@ public class AddImage extends Activity {
                 final EditText title = new EditText(this);
                 Utils.buildTitleDialog(bitmap, title, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        Utils.checkBegAndIncrement(AddImage.this);
                         setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString()));
                         Toast.makeText(AddImage.this, R.string.shortcutadded, Toast.LENGTH_SHORT).show();
                         finish();

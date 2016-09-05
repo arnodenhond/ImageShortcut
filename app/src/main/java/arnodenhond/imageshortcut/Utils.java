@@ -3,11 +3,16 @@ package arnodenhond.imageshortcut;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -16,6 +21,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.widget.EditText;
@@ -103,4 +109,41 @@ public class Utils {
         return titleAlert;
     }
 
+    public static void checkBegAndIncrement(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(Info.SAYTHANKS, Context.MODE_PRIVATE);
+        if (!prefs.getBoolean(Info.THANKSDONE, false)) {
+            int times = prefs.getInt(Info.SAYTHANKS, 0) + 1;
+            prefs.edit().putInt(Info.SAYTHANKS, times).commit();
+            if (times >= Info.TIMES_BEG) {
+                doBeg(context);
+            }
+        }
+    }
+
+    private static void doBeg(Context context) {
+        Intent storeintent = new Intent(Intent.ACTION_VIEW);
+        storeintent.setData(Uri.parse("market://details?id=" + context.getPackageName()));
+        PendingIntent intent = PendingIntent.getActivity(context, 0, storeintent, PendingIntent.FLAG_UPDATE_CURRENT);
+        int times = context.getSharedPreferences(Info.SAYTHANKS, Context.MODE_PRIVATE).getInt(Info.SAYTHANKS, 0);
+        Notification.Builder builder = new Notification.Builder(context);
+        builder.setPriority(Notification.PRIORITY_LOW);
+        builder.setStyle(new Notification.BigTextStyle().bigText(context.getString(R.string.infofooter)).setBigContentTitle(String.format(context.getString(R.string.timesused), times)));
+        builder.addAction(0, context.getString(R.string.postcomment), intent);
+        builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher));
+        builder.setTicker(context.getString(R.string.postcomment));
+        builder.setSmallIcon(R.mipmap.ic_launcher);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            builder.setShowWhen(false);
+        }
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0, builder.build());
+    }
+
+    public static Intent makeViewIntent(Uri fileUri) {
+        Intent viewintent = new Intent(Intent.ACTION_VIEW);
+        viewintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        viewintent.setDataAndType(fileUri, "image/*");
+        return viewintent;
+    }
+    
 }
