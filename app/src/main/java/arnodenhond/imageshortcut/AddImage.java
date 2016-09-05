@@ -53,7 +53,7 @@ public class AddImage extends Activity {
                     final EditText title = new EditText(this);
                     Utils.buildTitleDialog(bitmap, title, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString(), AddImage.this));
+                            setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString()));
                             Toast.makeText(AddImage.this, R.string.shortcutadded, Toast.LENGTH_SHORT).show();
                             finish();
                         }
@@ -72,7 +72,7 @@ public class AddImage extends Activity {
                 final EditText title = new EditText(this);
                 Utils.buildTitleDialog(bitmap, title, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString(), AddImage.this));
+                        setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString()));
                         Toast.makeText(AddImage.this, R.string.shortcutadded, Toast.LENGTH_SHORT).show();
                         finish();
                     }

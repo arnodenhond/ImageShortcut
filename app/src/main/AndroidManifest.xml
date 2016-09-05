@@ -9,7 +9,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/mediashortcut"
-        android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar.MinWidth">
         <activity
             android:name=".Info"

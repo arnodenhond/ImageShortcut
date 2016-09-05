@@ -52,7 +52,7 @@ public class Utils {
         return output;
     }
 
-    public static Intent makeShortcutIntent(Intent viewintent, Bitmap bitmap, String title, Context context) {
+    public static Intent makeShortcutIntent(Intent viewintent, Bitmap bitmap, String title) {
         Intent shortcutintent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
         shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, viewintent);
         shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON, bitmap);

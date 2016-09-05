@@ -37,7 +37,7 @@ public class ShareImage extends Activity {
             final EditText title = new EditText(this);
             Utils.buildTitleDialog(bitmap, title, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-                    sendBroadcast(Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString(), ShareImage.this));
+                    sendBroadcast(Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString()));
                     Toast.makeText(ShareImage.this, R.string.shortcutadded, Toast.LENGTH_SHORT).show();
                     finish();
                 }
@@ -63,7 +63,7 @@ public class ShareImage extends Activity {
         final EditText title = new EditText(this);
         Utils.buildTitleDialog(bitmap, title, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
-                sendBroadcast(Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString(), ShareImage.this));
+                sendBroadcast(Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString()));
                 Toast.makeText(ShareImage.this, R.string.shortcutadded, Toast.LENGTH_SHORT).show();
                 finish();
             }
