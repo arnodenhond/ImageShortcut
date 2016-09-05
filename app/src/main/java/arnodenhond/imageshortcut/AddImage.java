@@ -1,11 +1,13 @@
 package arnodenhond.imageshortcut;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.File;
@@ -40,28 +42,41 @@ public class AddImage extends Activity {
                 Uri fileUri = Utils.getFile(uri, this);
 
                 viewintent = new Intent(Intent.ACTION_VIEW);
+                //TODO add flags
                 viewintent.setDataAndType(fileUri, "image/*");
 
                 Intent intent = Utils.makeCropIntent(uri);
                 if (intent.resolveActivity(getPackageManager()) != null && Utils.isExternalStorageWritable()) {
                     startActivityForResult(intent, REQUEST_CROP);
                 } else {
-                    setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, BitmapFactory.decodeFile(fileUri.getEncodedPath()), this));
-                    finish();
+                    final Bitmap bitmap = Utils.iconify(BitmapFactory.decodeFile(fileUri.getEncodedPath()), this);
+                    final EditText title = new EditText(this);
+                    Utils.buildTitleDialog(bitmap, title, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString(), AddImage.this));
+                            Toast.makeText(AddImage.this, R.string.shortcutadded, Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }, this).show();
                 }
                 break;
             case REQUEST_CROP:
-                Bitmap bitmap;
+                final Bitmap bitmap;
                 if (data.getData() == null) {
-                    bitmap = (Bitmap) data.getExtras().get("data");
+                    bitmap = Utils.iconify((Bitmap) data.getExtras().get("data"), this);
                 } else {
-                    bitmap = BitmapFactory.decodeFile(data.getData().getEncodedPath());
+                    String file = data.getData().getEncodedPath();
+                    bitmap = Utils.iconify(BitmapFactory.decodeFile(file), this);
+                    new File(file).delete();
                 }
-                setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, bitmap, this));
-                if (data.getData() != null) {
-                    new File(data.getData().getEncodedPath()).delete();
-                }
-                finish();
+                final EditText title = new EditText(this);
+                Utils.buildTitleDialog(bitmap, title, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        setResult(RESULT_OK, Utils.makeShortcutIntent(viewintent, bitmap, title.getText().toString(), AddImage.this));
+                        Toast.makeText(AddImage.this, R.string.shortcutadded, Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }, this).show();
                 break;
         }
     }

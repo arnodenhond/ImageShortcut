@@ -1,7 +1,10 @@
 package arnodenhond.imageshortcut;
 
+import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -11,16 +14,19 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by arnodenhond on 04/09/16.
  */
 public class Utils {
 
-    private static Bitmap iconify(Bitmap bitmap, Context context) {
+    public static Bitmap iconify(Bitmap bitmap, Context context) {
         if (bitmap == null)
             return null;
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
@@ -46,20 +52,18 @@ public class Utils {
         return output;
     }
 
-
-    public static Intent makeShortcutIntent(Intent viewintent, Bitmap bitmap, Context context) {
+    public static Intent makeShortcutIntent(Intent viewintent, Bitmap bitmap, String title, Context context) {
         Intent shortcutintent = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
         shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, viewintent);
-        shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON, iconify(bitmap, context));
-        shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "");
+        shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_ICON, bitmap);
+        shortcutintent.putExtra(Intent.EXTRA_SHORTCUT_NAME, title);
         return shortcutintent;
     }
-
 
     public static Intent makeCropIntent(Uri uri) {
         Intent cropintent = new Intent("com.android.camera.action.CROP");
         cropintent.setDataAndType(uri, "image/*");
-        cropintent.putExtra("crop", "true");
+        cropintent.putExtra("return-data", true);
         cropintent.putExtra("aspectX", 1);
         cropintent.putExtra("aspectY", 1);
         cropintent.putExtra("outputX", 256);
@@ -81,6 +85,22 @@ public class Utils {
     public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         return Environment.MEDIA_MOUNTED.equals(state);
+    }
+
+    public static AlertDialog.Builder buildTitleDialog(final Bitmap bitmap, EditText title, DialogInterface.OnClickListener oklistener, final Activity activity) {
+        AlertDialog.Builder titleAlert = new AlertDialog.Builder(activity);
+        titleAlert.setTitle(R.string.settitle);
+        titleAlert.setView(title);
+        titleAlert.setIcon(new BitmapDrawable(bitmap));
+        titleAlert.setNeutralButton(R.string.ok, oklistener);
+        titleAlert.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface dialog) {
+                Toast.makeText(activity, R.string.shortcutcanceled, Toast.LENGTH_SHORT).show();
+                activity.setResult(Activity.RESULT_CANCELED);
+                activity.finish();
+            }
+        });
+        return titleAlert;
     }
 
 }

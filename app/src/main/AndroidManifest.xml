@@ -4,14 +4,17 @@
 
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/mediashortcut"
-        android:supportsRtl="true">
-        <activity android:name=".Info">
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.DeviceDefault.Dialog.NoActionBar.MinWidth">
+        <activity
+            android:name=".Info"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.DeviceDefault">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,7 +22,8 @@
         </activity>
         <activity
             android:name="arnodenhond.imageshortcut.ShareImage"
-            android:label="@string/mediashortcut">
+            android:excludeFromRecents="true"
+            android:label="@string/imageshortcut">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -28,8 +32,24 @@
         </activity>
         <activity
             android:name="arnodenhond.imageshortcut.AddImage"
-            android:configChanges="orientation|keyboardHidden"
+            android:excludeFromRecents="true"
             android:label="@string/imageshortcut">
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="arnodenhond.imageshortcut.ShareVideo"
+            android:label="@string/videoshortcut">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="video/*" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="arnodenhond.imageshortcut.AddVideo"
+            android:label="@string/videoshortcut">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
             </intent-filter>
