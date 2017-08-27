@@ -9,15 +9,18 @@
     <string name="settitle">Shortcut Title</string>
     <string name="ok">Create Shortcut</string>
     <string name="header">%1$s %2$s by Arno den Hond © 2016</string>
-    <string name="infoheader">Create shortcuts on your home screen to specific images or videos in the gallery. </string>
-    <string name="infoshare"><b>Share from gallery</b>\nWhile viewing an image or video in the gallery, tap share and select Image Shortcut or Video Shortcut.</string>
+    <string name="infoheader">Create shortcuts on your home screen to images or videos stored in a local device folder. </string>
+    <string name="infoshare"><b>Share from gallery</b>\nWhile viewing an image or video in the photo gallery, tap share and select Image Shortcut or Video Shortcut to create a home screen shortcut.</string>
     <string name="gallery">View Gallery</string>
-    <string name="infoshortcut"><b>Add widget from home screen</b>\nFrom the widgets section of the home screen, scroll to Media Shortcut and select Image Shortcut or Video Shortcut.</string>
+    <string name="infoshortcut"><b>Add widget from home screen</b>\nFrom the Add Widgets section of the home screen, scroll to Media Shortcut and select Image Shortcut or Video Shortcut.\nPick an image or video to create a homescreen shortcut.</string>
     <string name="home">View Home Screen</string>
+    <string name="moreinfo">On the home screen the shortcuts can be grouped into folders like icons.\nThis app is not required to view the images or videos. It could be uninstalled after creating the shortcut(s).\nIf the image or video is deleted, the shortcut remains but can no longer be opened.\nTo use this app, you must have a compatible photo gallery app installed to share, pick, crop and show the media.</string>
     <string name="infofooter">Development of this app has cost several evenings and weekends.\nYet it is completely free and has no advertisements.</string>
     <string name="infosubfooter">Feature requests and improvement suggestions\nhttps://github.com/arnodenhond/ImageShortcut/issues</string>
     <string name="postcomment">Say thank you with a rating</string>
     <string name="timesused">You have used Media Shortcut %1$d times</string>
-    <string name="notlocal">Could not make shortcut. Download file into device folder first.</string>
+    <string name="notlocal">Could not make shortcut. Copy or download the media into a local device folder first.</string>
+    <string name="selectshare">Select an item and tap Share</string>
+    <string name="couldnotpick">Could not launch media picking app</string>
 
 </resources>

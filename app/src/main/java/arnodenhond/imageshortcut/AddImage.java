@@ -25,8 +25,15 @@ public class AddImage extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI), REQUEST_PICK);
-    }
+        Intent pickintent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        //pickintent.setType("image/*");
+        if (pickintent.resolveActivity(getPackageManager())!=null) {
+            Toast.makeText(this,R.string.selectshare,Toast.LENGTH_SHORT).show();
+            startActivityForResult(pickintent, 0);
+        } else {
+            Toast.makeText(this,R.string.couldnotpick,Toast.LENGTH_SHORT).show();
+            finish();
+        }}
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -40,7 +47,7 @@ public class AddImage extends Activity {
             case REQUEST_PICK:
                 Uri uri = data.getData();
                 Uri fileUri = Utils.getImageFile(uri, this);
-                if (fileUri.equals("file://null")) {
+                if (fileUri==null) {
                     Toast.makeText(this, R.string.notlocal, Toast.LENGTH_SHORT).show();
                     finish();
                     return;

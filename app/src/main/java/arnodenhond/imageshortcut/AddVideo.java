@@ -21,7 +21,15 @@ public class AddVideo extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startActivityForResult(new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI), 0);
+        Intent pickintent = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
+        //pickintent.setType("video/*");
+        if (pickintent.resolveActivity(getPackageManager())!=null) {
+            Toast.makeText(this,R.string.selectshare,Toast.LENGTH_SHORT).show();
+            startActivityForResult(pickintent, 0);
+        } else {
+            Toast.makeText(this,R.string.couldnotpick,Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
     @Override
@@ -34,7 +42,7 @@ public class AddVideo extends Activity {
         }
         Uri uri = data.getData();
         Uri fileUri = Utils.getVideoFile(uri, this);
-        if (fileUri.equals("file://null")) {
+        if (fileUri==null) {
             Toast.makeText(this, R.string.notlocal, Toast.LENGTH_SHORT).show();
             finish();
             return;

@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ public class ShareImage extends Activity {
         super.onCreate(savedInstanceState);
         Uri uri = getIntent().getParcelableExtra(Intent.EXTRA_STREAM);
         Uri fileUri = Utils.getImageFile(uri, this);
-        if (fileUri.equals("file://null")) {
+        if (fileUri==null) {
             Toast.makeText(this, R.string.notlocal, Toast.LENGTH_SHORT).show();
             finish();
             return;
@@ -60,6 +61,7 @@ public class ShareImage extends Activity {
             bitmap = Utils.iconify((Bitmap) data.getExtras().get("data"), this);
         } else {
             String file = data.getData().getEncodedPath();
+            Log.d("ImageShortcut","file:"+file);
             bitmap = Utils.iconify(BitmapFactory.decodeFile(file), this);
             new File(file).delete();
         }

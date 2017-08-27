@@ -6,6 +6,8 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,9 +25,15 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by arnodenhond on 04/09/16.
@@ -79,22 +87,87 @@ public class Utils {
         return cropintent;
     }
 
-    public static Uri getImageFile(Uri uri, Context context) {
-        String[] filePathColumn = {MediaStore.Images.Media.DATA};
-        Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null);
-        cursor.moveToFirst();
-        String string = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
-        cursor.close();
-        return Uri.parse("file://" + string);
+    public static Intent makeVideoCropIntent() {
+        Intent cropintent = new Intent("com.android.camera.action.CROP");
+        cropintent.setDataAndType(Uri.parse("file://" + Environment.getExternalStorageDirectory().getAbsolutePath() + "/videopreview.jpg"), "image/*");
+        cropintent.putExtra("return-data", true);
+        cropintent.putExtra("aspectX", 1);
+        cropintent.putExtra("aspectY", 1);
+        cropintent.putExtra("outputX", 256);
+        cropintent.putExtra("outputY", 256);
+        cropintent.putExtra("scale", true);
+        cropintent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.parse("file://" + Environment.getExternalStorageDirectory().getAbsolutePath() + "/imageshortcut.jpg"));
+        return cropintent;
     }
 
-    public static Uri getVideoFile(Uri uri, Context context) {
-        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+    public static Uri saveBitmap(Bitmap bitmap, Context context) {
+        return Uri.parse(MediaStore.Images.Media.insertImage(context.getContentResolver(),bitmap,"videopreview","videopreview"));
+    }
+
+    public static void deleteBitmap(Uri uri, Context context) {
+        String[] retCol = { MediaStore.Audio.Media._ID };
+        Cursor cur = context.getContentResolver().query(
+                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                retCol,
+                MediaStore.MediaColumns.DATA + "='" + uri.getPath() + "'", null, null);
+        if (cur.getCount() == 0) {
+            return;
+        }
+        cur.moveToFirst();
+        int id = cur.getInt(cur.getColumnIndex(MediaStore.MediaColumns._ID));
+        cur.close();
+
+        Uri furi = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                id);
+        context.getContentResolver().delete(furi, null, null);
+    }
+
+    public static String getFileUrl(Uri uri,Context context) {
+        // Will return "image:x*"
+        String wholeID = DocumentsContract.getDocumentId(uri);
+
+// Split at colon, use second item in the array
+        String id = wholeID.split(":")[1];
+
+        String[] column = { MediaStore.Images.Media.DATA };
+
+// where id is equal to
+        String sel = MediaStore.Images.Media._ID + "=?";
+
+        Cursor cursor = context.getContentResolver().
+                query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        column, sel, new String[]{ id }, null);
+
+        String filePath = "";
+
+        int columnIndex = cursor.getColumnIndex(column[0]);
+
+        if (cursor.moveToFirst()) {
+            filePath = cursor.getString(columnIndex);
+        }
+
+        cursor.close();
+        return filePath;
+    }
+
+    public static Uri getImageFile(Uri uri, Context context) {
+        String[] filePathColumn = {MediaStore.Files.FileColumns.DATA};
         Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null);
         cursor.moveToFirst();
         String string = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
         cursor.close();
-        return Uri.parse("file://" + string);
+        return string==null?null:Uri.parse("file://" + string);
+    }
+
+
+
+    public static Uri getVideoFile(Uri uri, Context context) {
+        String[] filePathColumn = {MediaStore.Video.Media.DATA};
+        Cursor cursor = context.getContentResolver().query(uri, filePathColumn, null, null, null);
+        cursor.moveToFirst();
+        String string = cursor.getString(cursor.getColumnIndex(filePathColumn[0]));
+        cursor.close();
+        return string==null?null:Uri.parse("file://" + string);
     }
 
     public static boolean isExternalStorageWritable() {

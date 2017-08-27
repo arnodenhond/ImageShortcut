@@ -69,6 +69,20 @@
             android:paddingTop="15dip"
             android:scaleType="fitXY"
             android:src="@android:drawable/divider_horizontal_dark" />
+        <TextView
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:autoLink="all"
+            android:text="@string/moreinfo" />
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dip"
+            android:paddingTop="15dip"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/divider_horizontal_dark" />
 
         <TextView
             style="@android:style/TextAppearance.Medium"
