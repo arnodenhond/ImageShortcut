@@ -89,7 +89,7 @@ Technologies used
 # Privacy policy
 This software does not collect, store, share, or use any personal or sensitive user data.
 
-#Permissions
+# Permissions
 Receive boot completed - remove unused images that no longer have shortcuts
 
 
