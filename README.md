@@ -90,7 +90,11 @@ Technologies used
 This software does not collect, store, share, or use any personal or sensitive user data.
 
 # Permissions
+<<<<<<< HEAD
 Receive boot completed - remove unused images that no longer have shortcuts
+=======
+Receive boot completed - Remove unused images that no longer have shortcuts
+>>>>>>> e2e566a50024b74383bb9e540bc03e06f014bf42
 
 
 ---
