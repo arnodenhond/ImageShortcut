@@ -87,7 +87,7 @@ YOUTUBE SHORT
 
 [GitHub](https://github.com/arnodenhond/ImageShortcut/)
 
-![](https://img.shields.io/github/v/release/arnodenhond/imageshortcut align="center")
+![](https://img.shields.io/github/v/release/arnodenhond/imageshortcut)
 
 * Source Code
     
