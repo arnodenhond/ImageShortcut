@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Image Shortcut</string>
+    <string name="create_image_shortcut_button">Create Image Shortcut</string>
+    <string name="app_version">Version 11</string>
+
+
+    <string name="title_screen_heading">Create Pinned Shortcut</string>
+    <string name="title_screen_subtitle">Type the title for your shortcut</string>
+    <string name="shortcut_title_hint">Shortcut title</string>
+    <string name="pin_shortcut_button">Pin Shortcut</string>
+</resources>
