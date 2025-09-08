@@ -1,42 +1,30 @@
-Create shortcuts in your launcher to your favorite images.
+Stop endlessly scrolling through your gallery to find that one important image.
 
-Stop endlessly scrolling through your gallery to find that one important image. Create a shortcut to it on your home screen launcher and view the image immediately!
+Create a shortcut to it on your home screen launcher and view the image immediately!
 
 Unlike widgets, shortcuts can be grouped together into folders to save home screen space.
 
-
 # Frequently Asked Questions
-
-If I delete the image after creating a shortcut, what happens?
-
+- If I delete the image after creating a shortcut, what happens?
 A local copy of the image is kept so the shortcut always keeps working.
 
-If I delete the shortcut, what happens to the local copy of the image?
-
+- If I delete the shortcut, what happens to the local copy of the image?
 Unfortunately the launcher does not inform any app when shortcuts are deleted. Whenever the apps runs or the device starts, ImageShortcut checks which shortcuts have been removed and then removes the corresponding images.
 
-What does it cost?
-
+- What does it cost?
 It's free! No subscriptions, no in app purchases and no advertising. Donations are optional.
 
 # Requirements
-
-Android version 13 (API Level 33) or higher
-
-A launcher (home screen) that supports shortcut pinning
-
-An image viewer app
+- Android version 13 (API Level 33) or higher
+- A launcher (home screen) that supports shortcut pinning
+- An image viewer app
 
 # Permissions
-
 Receive boot completed - Remove unused images that no longer have shortcuts
 
 # Privacy policy
-
 This software does not collect, store, share, or use any personal or sensitive user data.
 
 # Contact
-
 https://www.arnodenhond.com/imageshortcut
-
 https://www.github.com/arnodenhond/ImageShortcut
