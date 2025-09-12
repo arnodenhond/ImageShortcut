@@ -52,6 +52,8 @@ Google Play user:
 
 [![](https://cdn.hashnode.com/res/hashnode/image/upload/v1757311109260/43de1621-e22b-45a5-b9bf-b8a9eaa86e85.png)](https://play.google.com/store/apps/details?id=arnodenhond.imageshortcut)
 
+[![](https://cdn.hashnode.com/res/hashnode/image/upload/v1757503810394/aef9f675-27ba-4a3f-8a31-3a90c373ee79.png)](https://image-and-video-shortcut.en.aptoide.com/)
+
 ---
 
 # Development
