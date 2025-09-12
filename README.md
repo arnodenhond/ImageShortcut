@@ -44,7 +44,7 @@ Google Play user:
 
 *What does it cost?*
 
-> It's free! No subscriptions, no in app purchases and no advertising. [Donations](https://www.patreon.com/posts/image-shortcut-138085432) are optional.
+> It's free! No subscriptions, no in app purchases and no advertising. [Donations](https://github.com/sponsors/arnodenhond) are optional.
 
 ---
 
