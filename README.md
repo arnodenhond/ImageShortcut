@@ -112,8 +112,4 @@ This software does not collect, store, share, or use any personal or sensitive u
 
 Receive boot completed - Remove unused images that no longer have shortcuts
 
----
 
-# License
-
-[https://raw.githubusercontent.com/arnodenhond/ImageShortcut/refs/heads/main/LICENSE.md](https://raw.githubusercontent.com/arnodenhond/ImageShortcut/refs/heads/main/LICENSE.md)
