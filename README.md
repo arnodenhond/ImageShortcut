@@ -58,19 +58,25 @@ Google Play user:
 
 # Development
 
+## GitHub
+
+* [Release](https://github.com/arnodenhond/ImageShortcut/releases/latest)
 ![](https://img.shields.io/github/v/release/arnodenhond/imageshortcut)
 
-GitHub
-
 * [Source Code](https://github.com/arnodenhond/ImageShortcut/)
+![](https://img.shields.io/github/languages/code-size/arnodenhond/imageshortcut)    
 
 * [Issues](https://github.com/arnodenhond/ImageShortcut/issues/)
+![](https://img.shields.io/github/issues/arnodenhond/imageshortcut)
 
-Technologies used
+* [License](https://raw.githubusercontent.com/arnodenhond/ImageShortcut/refs/heads/main/LICENSE.md)
+![](https://img.shields.io/github/license/arnodenhond/imageshortcut)
 
-* [ShortcutManager](https://developer.android.com/reference/android/content/pm/ShortcutManager)
+## Technologies used
+
+* [ShortcutManager](https://developer.android.com/reference/android/content/pm/ShortcutManager) Create new shortcut and get list of existing shortcuts.
     
-* [PhotoPicker](https://developer.android.com/training/data-storage/shared/photo-picker)
+* [PhotoPicker](https://developer.android.com/training/data-storage/shared/photo-picker) Select an image from the device storage or Cloud media app.
     
 ---
 
