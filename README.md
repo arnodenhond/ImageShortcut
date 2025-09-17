@@ -58,6 +58,12 @@ Google Play user:
 
 # Development
 
+Package Name: arnodenhond.imageshortcut
+
+Version Code: 11
+
+Release Date: 2025 September 07
+
 ## GitHub
 
 * [Release](https://github.com/arnodenhond/ImageShortcut/releases/latest)
