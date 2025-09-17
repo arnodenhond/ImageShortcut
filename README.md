@@ -40,7 +40,7 @@ Google Play user:
 
 *If I delete the shortcut, what happens to the local copy of the image?*
 
-> Unfortunately the launcher does not inform any app when shortcuts are deleted. Whenever the apps runs or the device starts, ImageShortcut checks which shortcuts have been removed and then removes the corresponding images.
+> Unfortunately the launcher does not inform any app when shortcuts are deleted. Whenever Image Shortcut runs or the device starts, it checks which shortcuts have been removed and deletes the corresponding images.
 
 *What does it cost?*
 
