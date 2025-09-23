@@ -1,6 +1,6 @@
-![](https://raw.githubusercontent.com/arnodenhond/ImageShortcut/refs/heads/main/app/src/main/play/listings/en-US/graphics/icon/imageshortcutbigicon.png)
+# Create shortcuts in your launcher to your favorite images.
 
-Create shortcuts in your launcher to your favorite images.
+![](https://raw.githubusercontent.com/arnodenhond/ImageShortcut/refs/heads/main/app/src/main/play/listings/en-US/graphics/icon/imageshortcutbigicon.png)
 
 Stop endlessly scrolling through your gallery to find that one important image. Create a shortcut to it on your home screen launcher and view the image immediately!
 
