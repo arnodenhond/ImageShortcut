@@ -10,52 +10,6 @@ Unlike widgets, shortcuts can be grouped together into folders to save home scre
 
 ---
 
-# Preview
-
-![](https://raw.githubusercontent.com/arnodenhond/ImageShortcut/refs/heads/main/app/src/main/play/listings/en-US/graphics/phone-screenshots/image1.png)
-
-![](https://raw.githubusercontent.com/arnodenhond/ImageShortcut/refs/heads/main/app/src/main/play/listings/en-US/graphics/phone-screenshots/image2.png)
-
-![](https://raw.githubusercontent.com/arnodenhond/ImageShortcut/refs/heads/main/app/src/main/play/listings/en-US/graphics/phone-screenshots/image3.png)
-
-![](https://raw.githubusercontent.com/arnodenhond/ImageShortcut/refs/heads/main/app/src/main/play/listings/en-US/graphics/phone-screenshots/image4.png)
-
----
-
-# Reviews
-
-Google Play user:
-> *Should be stock with Android! Works as stated. Simple and efficient.*
-
-Google Play user:
-> *Worked great. Lightweight and can put shortcuts in folders since it's not a widget.*
-
----
-
-# Frequently Asked Questions
-
-*If I close or delete the image after creating a shortcut, what happens?*
-
-> A local copy of the image is kept so the shortcut always keeps working.
-
-*If I delete the shortcut, what happens to the local copy of the image?*
-
-> Unfortunately the launcher does not inform any app when shortcuts are deleted. Whenever Image Shortcut runs or the device starts, it checks which shortcuts have been removed and deletes the corresponding images.
-
-*What does it cost?*
-
-> It's free! No subscriptions, no in app purchases and no advertising. [Donations](https://github.com/sponsors/arnodenhond) are optional.
-
----
-
-# App Stores
-
-[![](https://cdn.hashnode.com/res/hashnode/image/upload/v1757311109260/43de1621-e22b-45a5-b9bf-b8a9eaa86e85.png)](https://play.google.com/store/apps/details?id=arnodenhond.imageshortcut)
-
-[![](https://cdn.hashnode.com/res/hashnode/image/upload/v1757503810394/aef9f675-27ba-4a3f-8a31-3a90c373ee79.png)](https://image-and-video-shortcut.en.aptoide.com/)
-
----
-
 # Development
 
 Package Name: arnodenhond.imageshortcut
@@ -105,17 +59,5 @@ Release Date: 2025 September 07
 * v10 ~ v11 : 2016-07-05 ~ 2017-08-27 Video Shortcuts, Shortcut Title
     
 * v2 ~ v9 : 2011-08-17 ~ 2013-02-04 [Google Code](https://code.google.com/archive/p/image-shortcut/)
-    
----
-
-# Privacy policy
-
-This software does not collect, store, share, or use any personal or sensitive user data.
-
----
-
-# Permissions
-
-Receive boot completed - Remove unused images that no longer have shortcuts
 
 
