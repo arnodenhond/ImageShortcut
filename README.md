@@ -20,17 +20,13 @@ Release Date: 2025 September 07
 
 ## GitHub
 
-* [Release](https://github.com/arnodenhond/ImageShortcut/releases/latest)
-![](https://img.shields.io/github/v/release/arnodenhond/imageshortcut)
+* [Release ![](https://img.shields.io/github/v/release/arnodenhond/imageshortcut)](https://github.com/arnodenhond/ImageShortcut/releases/latest)
 
-* [Source Code](https://github.com/arnodenhond/ImageShortcut/)
-![](https://img.shields.io/github/languages/code-size/arnodenhond/imageshortcut)    
+* [Source Code ![](https://img.shields.io/github/languages/code-size/arnodenhond/imageshortcut)](https://github.com/arnodenhond/ImageShortcut/)
 
-* [Issues](https://github.com/arnodenhond/ImageShortcut/issues/)
-![](https://img.shields.io/github/issues/arnodenhond/imageshortcut)
+* [Issues ![](https://img.shields.io/github/issues/arnodenhond/imageshortcut)](https://github.com/arnodenhond/ImageShortcut/issues/)
 
-* [License](https://raw.githubusercontent.com/arnodenhond/ImageShortcut/refs/heads/main/LICENSE.md)
-![](https://img.shields.io/github/license/arnodenhond/imageshortcut)
+* [License ![](https://img.shields.io/github/license/arnodenhond/imageshortcut)](https://raw.githubusercontent.com/arnodenhond/ImageShortcut/refs/heads/main/LICENSE.md)
 
 ## Technologies used
 
