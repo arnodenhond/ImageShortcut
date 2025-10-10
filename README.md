@@ -22,7 +22,7 @@ Release Date: 2025 September 07
 
 * [Release ![](https://img.shields.io/github/v/release/arnodenhond/imageshortcut)](https://github.com/arnodenhond/ImageShortcut/releases/latest)
 
-* [Source Code ![](https://img.shields.io/github/languages/code-size/arnodenhond/imageshortcut)](https://github.com/arnodenhond/ImageShortcut/)
+* ![](https://img.shields.io/github/created-at/arnodenhond/imageshortcut)
 
 * [Issues ![](https://img.shields.io/github/issues/arnodenhond/imageshortcut)](https://github.com/arnodenhond/ImageShortcut/issues/)
 
